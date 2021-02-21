@@ -5,9 +5,9 @@ sys.path.append('source')  # Добовление дерикторию импо�
 import time
 import colorama
 import threading
+import functions
 from cfg import *
 from requests import get
-from functions import apoi
 from progress.bar import ShadyBar
 
 
@@ -66,7 +66,7 @@ bar = ShadyBar('running threads', max=len(proxy_list))
 
 # --- Запуск потоков для проверки proxy --- #
 for x in range(len(proxy_list)):
-    threading.Thread(target=apoi, args=(str(proxy_list[x]), protocol)).start()
+    threading.Thread(target=functions.apoi, args=(str(proxy_list[x]), protocol)).start()
     bar.next()
 
 
@@ -80,6 +80,9 @@ print(colorama.Fore.YELLOW + str(x) + colorama.Style.RESET_ALL +
 while len(threading.enumerate()) != 1:
     time.sleep(0.1)
     
+# --- запись рабочих адресов в файл --- #
+functions.writa()
+
 print(colorama.Style.BRIGHT)
 print('[Finished in ' + colorama.Fore.CYAN +
       str(round(time.time() - start, 2)) + colorama.Style.RESET_ALL + 's]')
