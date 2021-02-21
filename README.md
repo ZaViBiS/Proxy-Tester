@@ -3,8 +3,15 @@ Proxy-Tester
 Установка зависимостей:
 pip install -r requirements.txt
 
-Использование:
-* python main.py http
+## Использование:
+```python main.py 3```
+
+```←[Krunning threads |██████████                      | 516/1684
+1684 threads were successfully launched
+
+480 out of 1684 turned out to be workers and were recorded in the file
+
+[Finished in 161.1s]```
 
 В значение при запуске можно ввести название протокола или номер в списке
 список :
