@@ -13,11 +13,38 @@ from functions import apoi
 # --- Инициализация colorama'ы --- #
 colorama.init()
 
+
 # --- Выбор протокола proxy --- #
+# Если значение при запуске не было передано
 if len(sys.argv) <= 1:
-    protocol = 'http'
+    try:
+        protocol = proticol_list[int(input(open_text)) - 1]
+ 
+    except Exception as e:
+        print('Что-то не так')
+        print('----- (｡•́︿•̀｡) -----')
+        print(e)
+
+        # Завиршение
+        quit()
+
+# Если было
 else:
-    protocol = str(sys.argv[1])
+    try:
+        protocol = proticol_list[int(sys.argv[1]) - 1]
+    except:
+        # Проверка на правильность написания
+        for x in proticol_list:
+            if x == str(sys.argv[1]):
+                protocol = x
+                break
+
+        # Если протокол не указан - завиршение
+        if protocol == '':
+            print('(｡•́︿•̀｡)')
+            quit()
+
+
 
 # --- Начала замера выполнения --- #
 start = time.time()
@@ -48,5 +75,5 @@ print(colorama.Fore.YELLOW + str(x) + colorama.Style.RESET_ALL +
 while len(threading.enumerate()) != 1:
     time.sleep(0.1)
     
-print('[Finished in ' + colorama.Fore.YELLOW +
+print('[Finished in ' + colorama.Fore.CYAN +
       str(round(time.time() - start, 2)) + colorama.Style.RESET_ALL + 's]')
