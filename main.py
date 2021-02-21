@@ -8,6 +8,7 @@ import threading
 from cfg import *
 from requests import get
 from functions import apoi
+from progress.bar import ShadyBar
 
 
 # --- Инициализация colorama'ы --- #
@@ -60,9 +61,13 @@ for x in get(url + protocol).text:
 # -^ Удаление из списка: '\n' ^- #
 proxy_list = [line.rstrip() for line in proxy_list]
 
+# линия загрузки
+bar = ShadyBar('running threads', max=len(proxy_list))
+
 # --- Запуск потоков для проверки proxy --- #
 for x in range(len(proxy_list)):
     threading.Thread(target=apoi, args=(str(proxy_list[x]), protocol)).start()
+    bar.next()
 
 
 print(colorama.Style.BRIGHT)
@@ -75,5 +80,6 @@ print(colorama.Fore.YELLOW + str(x) + colorama.Style.RESET_ALL +
 while len(threading.enumerate()) != 1:
     time.sleep(0.1)
     
+print(colorama.Style.BRIGHT)
 print('[Finished in ' + colorama.Fore.CYAN +
       str(round(time.time() - start, 2)) + colorama.Style.RESET_ALL + 's]')
