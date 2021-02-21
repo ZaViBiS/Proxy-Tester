@@ -11,7 +11,8 @@ pip install -r requirements.txt
 
 480 out of 1684 turned out to be workers and were recorded in the file
 
-[Finished in 161.1s]```
+[Finished in 161.1s]
+```
 
 В значение при запуске можно ввести название протокола или номер в списке
 список :
