@@ -2,11 +2,15 @@ import sys
 
 sys.path.append('source') # Добовление дерикторию импорта
 
-from functions import apoi
-from requests import get
-from cfg import *
+import colorama
 import threading
+from cfg import *
+from requests import get
+from functions import apoi
 
+
+# --- Инициализация colorama'ы --- #
+colorama.init()
 
 # --- Выбор протокола proxy --- #
 if len(sys.argv) <= 1:
@@ -30,4 +34,4 @@ for x in range(len(proxy_list)):
     threading.Thread(target=apoi, args=(str(proxy_list[x]), protocol)).start()
 
 
-print('{0} threads were successfully launched'.format(x))
+print(colorama.Fore.CYAN + str(x) + colorama.Style.RESET_ALL + ' threads were successfully launched')
