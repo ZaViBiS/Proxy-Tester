@@ -2,7 +2,7 @@
 # https://www.proxy-list.download/api/v1/get?type=https
 
 def save(data):
-    open('done.txt', 'a+').write(data + '\n')
+    open('./done.txt', 'a+').write(data + '\n')
 
 
 def apoi(addres, protocol):

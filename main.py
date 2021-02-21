@@ -1,15 +1,18 @@
-import threading
-from cfg import *
-from sys import argv
+import sys
+
+sys.path.append('source') # Добовление дерикторию импорта
+
 from functions import apoi
 from requests import get
+from cfg import *
+import threading
 
 
 # --- Выбор протокола proxy --- #
-if len(argv) <= 1:
+if len(sys.argv) <= 1:
     protocol = 'http'
 else:
-    protocol = str(argv[1])
+    protocol = str(sys.argv[1])
 
 # --- Получение списка ip адресов и добавление в список --- #
 for x in get(url + protocol).text:
