@@ -8,10 +8,10 @@ pip install -r requirements.txt
 
 В значение при запуске можно ввести название протокола или номер в списке
 список :
-http       [1]
-https      [2]
-socks4     [3]
-socks5     [4] 
+* http       [1]
+* https      [2]
+* socks4     [3]
+* socks5     [4] 
 
 
 По окончанию в файле 'done.txt' будут рабочие proxy
