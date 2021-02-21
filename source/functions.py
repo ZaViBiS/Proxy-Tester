@@ -16,10 +16,12 @@ def apoi(addres, protocol):
     global working
     global working_proxies
     
-    if protocol == 'https':
+    if protocol != 'http':
         url = 'https'
     else:
         url = 'http'
+    if protocol == 'socks4' or protocol == 'socks5':
+        protocol = 'socks'
 
     try:
         if get(url + '://google.com', proxies={protocol : addres}, timeout=10):
@@ -28,6 +30,19 @@ def apoi(addres, protocol):
     except:
         pass
 # --- ^ = + = ^ --- #
+
+
+def check(addres):
+    from proxy_checker import ProxyChecker
+
+    global working
+    global working_proxies
+
+    if ProxyChecker().check_proxy(addres) != False:
+        working_proxies.append(addres)
+        working += 1
+
+
 
 def writa():
     for x in working_proxies:
