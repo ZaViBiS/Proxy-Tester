@@ -8,7 +8,7 @@ def save(data):
 def apoi(addres, protocol):
     from requests import get
     try:
-        if get('http://google.com', proxies={protocol : addres}, timeout=10):
+        if get('http://google.com', proxies={protocol : addres}):
             save(addres)
     except:
         pass
