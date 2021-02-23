@@ -51,40 +51,20 @@ def writa():
         file.close()
 
 
-# Получение прокси через api + проверка
+def cutter(addres):
+    sd = False
+    port = ''
+    ip = ''
 
-'''
-def check_api_proxy(cycle):
-    from requests import get
-    for x in range(cycle):
-        info = get('https://api.getproxylist.com/proxy')
-        if get('google.com', proxies={info['protocol'] : str(info['ip']: info['port'])}):
-            save(str(info['ip'] + ':' + info['port']))
-'''
-'''
-def check_file(what, l, ):
-    from requests import get
-    done_list = []
-    if len(l) % 2 != 0:
-        number_of_proxies = int((len(l) - 1) / 2)
+    for x in addres:
+        if x == ':':
+            sd = True
+        continue
+
+    if sd == False:
+        ip += x
+
     else:
-        number_of_proxies = int(len(l) / 2)
+        port += x
 
-    if what == 1:
-        scout = l[:number_of_proxies]
-    else:
-        scout = l[number_of_proxies:]
-    for x in range(number_of_proxies):
-
-        proxies = {'http': scout[x]}
-        try:
-            if get(url, proxies=proxies)
-
-                done_list.append(scout[x])
-            else:
-                print('no')
-        except Exception as e:
-            print(e)
-    print(done_list)
-'''
-
+    return addres, port

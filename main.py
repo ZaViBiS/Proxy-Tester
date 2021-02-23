@@ -61,7 +61,7 @@ for x in get(url + protocol).text:
 proxy_list = [line.rstrip() for line in proxy_list]
 
 # линия загрузки
-bar = ShadyBar('running threads', max=len(proxy_list))
+bar = ShadyBar('Running threads', max=len(proxy_list))
 
 # --- Запуск потоков для проверки proxy --- #
 for x in range(len(proxy_list)):
@@ -72,7 +72,7 @@ for x in range(len(proxy_list)):
 print(colorama.Style.BRIGHT)
 
 # Количество потоков
-print(colorama.Fore.YELLOW + str(x + 1) + colorama.Style.RESET_ALL +
+print('\n' + colorama.Fore.YELLOW + str(x + 1) + colorama.Style.RESET_ALL +
       ' threads were successfully launched')
 
 # Количество секунд затраченое на выполнение
@@ -89,3 +89,4 @@ print(colorama.Style.BRIGHT + colorama.Fore.GREEN + str(functions.working) + col
 print(colorama.Style.BRIGHT)
 print('[Finished in ' + colorama.Fore.CYAN +
       str(round(time.time() - start, 2)) + colorama.Style.RESET_ALL + 's]')
+

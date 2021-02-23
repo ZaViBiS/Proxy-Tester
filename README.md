@@ -4,9 +4,11 @@ Proxy-Tester
 pip install -r requirements.txt
 
 ## Использование:
-```python main.py 3```
+```console
+python main.py 3```
 
-```←[Krunning threads |██████████                      | 516/1684
+```console
+←[Krunning threads |██████████                      | 516/1684
 1684 threads were successfully launched
 
 480 out of 1684 turned out to be workers and were recorded in the file

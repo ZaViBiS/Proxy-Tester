@@ -2,3 +2,4 @@ requests
 pysocks
 colorama
 progress
+proxy_checker
