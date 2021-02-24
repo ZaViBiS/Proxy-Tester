@@ -5,7 +5,8 @@ pip install -r requirements.txt
 
 ## Использование:
 ```console
-python main.py 3```
+python main.py 3
+```
 
 ```console
 ←[Krunning threads |██████████                      | 516/1684
