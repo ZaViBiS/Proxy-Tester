@@ -50,24 +50,33 @@ else:
 start = time.time()
 
 # --- Получение списка ip адресов и добавление в список --- #
-for x in get(url + protocol).text:
-    if x == '\n':
-        proxy_list.append(for_for)
-        for_for = ''
-    else:
-        for_for += x
+if protocol != 'all':
+    for x in get(url + protocol).text:
+        if x == '\n':
+            proxy_list.append(for_for)
+            for_for = ''
+        else:
+            for_for += x
+# --- Если выбран 'all', то добавить все адресса в список --- #
+else:
+    for x in proticol_list[1:]:
+        for x in [x for x in (y.split() for y in get(url + x).text.split('\n')) if x]:
+            proxy_list.append(x[0].split('\r')[0])
 
-# -^ Удаление из списка: '\n' ^- #
-proxy_list = [line.rstrip() for line in proxy_list]
 
-# линия загрузки
+# Линия загрузки
 bar = ShadyBar('Running threads', max=len(proxy_list))
 
-# --- Запуск потоков для проверки proxy --- #
-for x in range(len(proxy_list)):
-    threading.Thread(target=functions.check, args=(proxy_list[x], )).start()
-    bar.next()
 
+# --- Запуск потоков для проверки proxy --- #
+if protocol != 'all':
+    for x in range(len(proxy_list)):
+        threading.Thread(target=functions.check, args=(proxy_list[x], )).start()
+        bar.next()
+else:
+    for x in range(len(proxy_list)):
+        threading.Thread(target=functions.check, args=(proxy_list[x], )).start()
+        bar.next()
 
 print(colorama.Style.BRIGHT)
 
@@ -79,7 +88,7 @@ print('\n' + colorama.Fore.YELLOW + str(x + 1) + colorama.Style.RESET_ALL +
 while len(threading.enumerate()) != 1:
     time.sleep(0.1)
 
-# --- запись рабочих адресов в файл --- #
+# --- Запись рабочих адресов в файл --- #
 functions.writa()
 
 print(colorama.Style.BRIGHT)
@@ -89,4 +98,3 @@ print(colorama.Style.BRIGHT + colorama.Fore.GREEN + str(functions.working) + col
 print(colorama.Style.BRIGHT)
 print('[Finished in ' + colorama.Fore.CYAN +
       str(round(time.time() - start, 2)) + colorama.Style.RESET_ALL + 's]')
-
