@@ -52,11 +52,13 @@ start = time.time()
 # --- Получение списка ip адресов и добавление в список --- #
 if protocol != 'all':
     for x in get(url + protocol).text:
-        if x == '\n':
+        if x == '\n' or x == '\r':
             proxy_list.append(for_for)
             for_for = ''
         else:
             for_for += x
+    # Удаление пустых элементов списка
+    proxy_list = [x for x in proxy_list if x]
 # --- Если выбран 'all', то добавить все адресса в список --- #
 else:
     for x in proticol_list[1:]:
