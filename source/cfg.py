@@ -4,6 +4,7 @@ url = 'https://www.proxy-list.download/api/v1/get?type='
 for_for = ''
 proticol_list = ['all', 'http', 'https', 'socks4', 'socks5']
 protocol = ''
+json_file = True # Если json_file = True будет создан дополнительный файл в формате json
 
 
 # --- Text --- #

@@ -45,6 +45,13 @@ def check(addres):
 
 
 def writa():
+    import json
+    from cfg import json_file
+
+    if json_file:
+        with open('done.json', 'a+') as j_file:
+            json.dump(working_proxies, j_file)
+
     for x in working_proxies:
         file = open('./done.txt', 'a+')
         file.write(x + '\n')
