@@ -71,14 +71,16 @@ bar = ShadyBar('Running threads', max=len(proxy_list))
 
 
 # --- Запуск потоков для проверки proxy --- #
-if protocol != 'all':
-    for x in range(len(proxy_list)):
-        threading.Thread(target=functions.check, args=(proxy_list[x], )).start()
-        bar.next()
-else:
-    for x in range(len(proxy_list)):
-        threading.Thread(target=functions.check, args=(proxy_list[x], )).start()
-        bar.next()
+for x in range(len(proxy_list)):
+    while True:
+        if threading.active_count() >= max_thread:
+            time.sleep(sleep_time)
+        else:
+            break
+        
+    threading.Thread(target=functions.check, args=(proxy_list[x], )).start()
+    bar.next()
+
 
 print(colorama.Style.BRIGHT)
 
