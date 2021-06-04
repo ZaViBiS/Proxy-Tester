@@ -1,5 +1,8 @@
 '''seve data in file'''
 # https://www.proxy-list.download/api/v1/get?type=https
+from requests import get
+
+
 working = 0
 working_proxies = []
 
@@ -10,21 +13,17 @@ def save(data):
     f.close()
 
 # --- ^ = + = ^ --- #
-def apoi(addres, protocol):
-    from requests import get
 
+
+def check(addres, protocol):
     global working
     global working_proxies
-    
-    if protocol != 'http':
-        url = 'https'
-    else:
-        url = 'http'
+
     if protocol == 'socks4' or protocol == 'socks5':
         protocol = 'socks'
 
     try:
-        if get(url + '://google.com', proxies={protocol : addres}, timeout=10):
+        if get(f'{protocol}://google.com', proxies={protocol: addres}, timeout=10):
             working_proxies.append(addres)
             working += 1
     except:
@@ -32,16 +31,15 @@ def apoi(addres, protocol):
 # --- ^ = + = ^ --- #
 
 
-def check(addres):
-    from proxy_checker import ProxyChecker
+def apio(addres):
+    # from proxy_checker import ProxyChecker
 
     global working
     global working_proxies
 
-    if ProxyChecker().check_proxy(addres) != False:
+    '''if ProxyChecker().check_proxy(addres) != False:
         working_proxies.append(addres)
-        working += 1
-
+        working += 1'''
 
 
 def writa():
