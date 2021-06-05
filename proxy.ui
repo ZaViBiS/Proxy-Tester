@@ -23,6 +23,42 @@
       <height>34</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">
+ QPushButton {
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+ QPushButton:hover {
+   background: #000;
+  color: #fff;
+}
+ QPushButton:before {
+    position: absolute;
+    content: '';
+    display: inline-block;
+    top: -180px;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background-color: #fff;
+    animation: shiny-btn1 3s ease-in-out infinite;
+}
+ QPushButton:active{
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+
+
+@-webkit-keyframes shiny-btn1 {
+    0% { -webkit-transform: scale(0) rotate(45deg); opacity: 0; }
+    80% { -webkit-transform: scale(0) rotate(45deg); opacity: 0.5; }
+    81% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; }
+    100% { -webkit-transform: scale(50) rotate(45deg); opacity: 0; }
+}</string>
+    </property>
     <property name="text">
      <string>Start</string>
     </property>

@@ -10,6 +10,9 @@ from o_cfg import *
 work_proxy = []
 
 
+def status(message): function.ui.statusbar.showMessage(message)
+
+
 def get_proxy(protocol): return requests.get(url + protocol).text
 
 
@@ -69,29 +72,35 @@ def viwe(list_text):
 
 
 def tester(protocol):
-    '''
     if protocol == 'all':
-        proxy_list = {}
-        for x in proto_list:
-            proxy = get_proxy(x)
-            proxy_list[x] = only_proxy(proxy)
-    else:
-        proxy_list = only_proxy(get_proxy(protocol))'''
+        all()
+        return
+
     proxy_list = only_proxy(get_proxy(protocol))
     start_thread(proxy_list, protocol)
+
+    while True:
+        if threading.active_count() < 2:
+            break
+        else:
+            time.sleep(sleep_time)
+
     viwe(work_proxy)
 
-    '''while True:
-        if threading.active_count() < 2:
-            print(work_proxy)
-            break
-        time.sleep(0.1)'''
 
-    '''elif protocol == 'http':
-        pass
-    elif protocol == 'https':
-        pass
-    elif protocol == 'socks4':
-        pass
-    elif protocol == 'socks5':
-        pass'''
+def all():
+    for x in proto_list:
+        status('Получение списка proxy')
+        proxy = get_proxy(x)    # Получение списка proxy
+        status('"Очистка" proxy')
+        proxy = only_proxy(proxy)    # "Очистка" proxy
+        status(f'Начало тестирования ({x})')
+        start_thread(proxy, x)    # Начало тестирования
+
+    while True:
+        if threading.active_count() < 2:
+            break
+        else:
+            time.sleep(sleep_time)
+
+    viwe(work_proxy)

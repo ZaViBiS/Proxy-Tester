@@ -2,8 +2,7 @@ import logging
 
 from function import *
 
-logging.basicConfig(level=logging.DEBUG)
-
+logging.basicConfig(level=logging.INFO)
 
 
 ui.show()

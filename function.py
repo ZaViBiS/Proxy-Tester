@@ -1,3 +1,5 @@
+import threading
+
 from PyQt5 import QtWidgets, uic
 from proxy import *
 
@@ -23,7 +25,6 @@ status = lambda text='text': ui.statusbar.showMessage(str('text'))
 def all_func():
     global protocol
     protocol = 'all'
-    print(protocol)
 
 
 def http_func():
@@ -56,9 +57,7 @@ def box():
 
 def start():
     if protocol != '':
-        tester(protocol)
-
-
+        threading.Thread(target=(tester), args=(protocol, )).start()
 
 
 ui.all.clicked.connect(all_func)
